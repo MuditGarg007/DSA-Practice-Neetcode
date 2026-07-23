@@ -1,0 +1,32 @@
+class MinStack {
+    Stack<Integer> stack;
+    Stack<Integer> minStack;
+    int min;
+
+    public MinStack() {
+        stack = new Stack<>();
+        minStack = new Stack<>();
+        min = Integer.MAX_VALUE;
+    }
+    
+    public void push(int val) {
+        stack.push(val);
+        min = Math.min(min, val);
+        minStack.push(min);
+    }
+    
+    public void pop() {
+        minStack.pop();
+        stack.pop();
+        if(minStack.isEmpty()) min = Integer.MAX_VALUE;
+        else min = minStack.peek();
+    }
+    
+    public int top() {
+        return stack.peek();
+    }
+    
+    public int getMin() {
+        return minStack.peek();
+    }
+}
